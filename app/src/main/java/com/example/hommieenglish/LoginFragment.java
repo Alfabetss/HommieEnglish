@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.hommieenglish.constant.Constant;
+import com.example.hommieenglish.dao.UserDao;
+import com.example.hommieenglish.db.HommieEnglish;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,12 +33,14 @@ public class LoginFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private HommieEnglish db;
+    private UserDao userDao;
     public LoginFragment() {
         // Required empty public constructor
     }
 
     /**
-     * Use this factory method to create a new instance of
+     * Use this factory method to create a new instance o
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
@@ -57,6 +64,14 @@ public class LoginFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+//        db = Room.databaseBuilder(getActivity().getApplicationContext(), HommieEnglish.class, Constant.DATABASE_NAME).build();
+//        userDao = db.userDao();
+    }
+
+    @Override
+    public void onDestroy() {
+//        db.close();
+        super.onDestroy();
     }
 
     @Override
@@ -65,6 +80,7 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View loginView = inflater.inflate(R.layout.fragment_login, container, false);
         Button loginButton = loginView.findViewById(R.id.btn_login);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
