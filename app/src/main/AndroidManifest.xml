@@ -30,6 +30,14 @@
         <activity
             android:name=".LearningMenuActivity"
             android:exported="false"/>
-    </application>
+        <activity
+            android:name=".TaskMultipleChoiceActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".VideoActivity"
+            android:exported="false"/>
 
+    </application>
+    <!--        Permission lists-->
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
