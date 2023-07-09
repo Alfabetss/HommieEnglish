@@ -1,93 +1,65 @@
 package com.example.hommieenglish;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import com.example.hommieenglish.utils.Helper;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import java.util.concurrent.CompletableFuture;
 
-import com.example.hommieenglish.databinding.ActivityMainBinding;
-
-import android.view.Menu;
-import android.view.MenuItem;
-
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
-
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_activity);
 
-        ViewPager viewPager = findViewById(R.id.viewPager);
+        UserManager userManager = new UserManager(getApplicationContext());
+        // Fungsi untuk pindah ke halaman register
+        TextView linkToRegister = findViewById(R.id.dont_have_account);
+        linkToRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(), RegisterActivity.class);
+                startActivity(i);
+            }
+        });
 
-        AuthenticationPagerAdapter pagerAdapter = new AuthenticationPagerAdapter(getSupportFragmentManager());
-        pagerAdapter.addFragmet(new LoginFragment());
-        pagerAdapter.addFragmet(new RegisterFragment());
-        viewPager.setAdapter(pagerAdapter);
+        // Fungsi untuk login
+        Button loginBtn = findViewById(R.id.btn_login);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView name = (TextView) findViewById(R.id.et_username );
+                TextView password = (TextView) findViewById(R.id.et_password);
+                if (password == null || password.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Invalid Password", Toast.LENGTH_LONG).show();
+                } else if (name == null || name.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Invalid Name", Toast.LENGTH_LONG).show();
+                }
 
+                CompletableFuture.supplyAsync(() -> userManager.login(name.getText().toString(), Helper.encodePassword(password.getText().toString())))
+                        .thenAccept(user -> {
+                            if (user != null) {
+                                // Login berhasil
+                                runOnUiThread(() -> {
+                                    Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(getBaseContext(), MainMenu.class);
+                                    i.putExtra("user_id", user.id);
+                                    startActivity(i);
+                                });
+                            } else {
+                                // Login gagal
+                                runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Login Failed, Please Try Again", Toast.LENGTH_SHORT).show());
+                            }
+                        });
+
+            }
+        });
     }
-
-    class AuthenticationPagerAdapter extends FragmentPagerAdapter {
-        private ArrayList<Fragment> fragmentList = new ArrayList<>();
-
-        public AuthenticationPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int i) {
-            return fragmentList.get(i);
-        }
-
-        @Override
-        public int getCount() {
-            return fragmentList.size();
-        }
-
-        void addFragmet(Fragment fragment) {
-            fragmentList.add(fragment);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
-
 }

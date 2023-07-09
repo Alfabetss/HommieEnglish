@@ -17,12 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainMenu extends Activity {
-
+    private Integer userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        Intent i = getIntent();
+        userId = i.getIntExtra("user_id", 0);
         LinearLayout learnBtn = findViewById(R.id.learn_layout);
         LinearLayout achievementBtn = findViewById(R.id.achievement_layout);
         LinearLayout taskBtn = findViewById(R.id.task_layout);
@@ -38,7 +40,8 @@ public class MainMenu extends Activity {
         achievementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainMenu.this, "This is Achievement button !", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getBaseContext(), AchievementActivity.class);
+                startActivity(intent);
             }
         });
 

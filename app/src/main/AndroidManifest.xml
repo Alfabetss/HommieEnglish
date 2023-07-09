@@ -36,6 +36,12 @@
         <activity
             android:name=".VideoActivity"
             android:exported="false"/>
+        <activity
+            android:name=".AchievementActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"/>
 
     </application>
     <!--        Permission lists-->

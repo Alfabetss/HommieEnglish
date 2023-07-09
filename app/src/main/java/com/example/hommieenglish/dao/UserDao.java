@@ -1,5 +1,6 @@
 package com.example.hommieenglish.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -13,7 +14,7 @@ public interface UserDao {
     @Insert
     void insertUser(User user);
 
-    @Query("SELECT * FROM user WHERE id = :id")
+    @Query("SELECT * FROM users WHERE id = :id")
     User getById(int id);
 
     @Update
@@ -22,6 +23,9 @@ public interface UserDao {
     @Delete
     void deleteUser(User user);
 
-    @Query("SELECT * FROM user WHERE user_email = :email")
-    User getByEmail(String email);
+    @Query("SELECT * FROM users WHERE user_name = :userName")
+    User getByUsername(String userName);
+
+    @Query("SELECT * FROM users WHERE user_name = :userName AND user_password = :password")
+    User getByUsernameAndPassword(String userName, String password);
 }
