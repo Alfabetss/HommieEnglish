@@ -2,80 +2,104 @@ package com.example.hommieenglish;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.example.hommieenglish.dao.LearningMaterialsDao;
+import com.example.hommieenglish.db.HommieEnglish;
+import com.example.hommieenglish.entity.LearningMaterials;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+
 public class LearningActivity extends Activity {
+
+    private HommieEnglish db;
+    private LearningMaterialsDao learningMaterials;
+
+    private List<LearningMaterials> materials;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning);
 
-        LinearLayout unit1Btn = findViewById(R.id.unit_1);
-        LinearLayout unit2Btn = findViewById(R.id.unit_2);
-        LinearLayout unit3Btn = findViewById(R.id.unit_3);
-        LinearLayout unit4Btn = findViewById(R.id.unit_4);
-        LinearLayout unit5Btn = findViewById(R.id.unit_5);
-        LinearLayout unit6Btn = findViewById(R.id.unit_6);
-        LinearLayout unit7Btn = findViewById(R.id.unit_7);
+        db = HommieEnglish.getInstance(this);
+        learningMaterials = db.learningMaterialsDao();
 
-        unit1Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), LearningMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+        CompletableFuture.supplyAsync(() -> learningMaterials.getAllMaterials())
+                .thenAcceptAsync(dataList -> {
+                   runOnUiThread(() -> {
+                       LinearLayout linearLayout = findViewById(R.id.activity_learning);
+                       for (int i = 0; i < dataList.size(); i++) {
 
-        unit2Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), LearningMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+                           LinearLayout materialList = new LinearLayout(this);
+                           materialList.setOrientation(LinearLayout.HORIZONTAL);
+                           materialList.setClickable(true);
+                           materialList.setPadding(0,0,0,24);
+                           materialList.setLayoutParams(new LinearLayout.LayoutParams(
+                                   ViewGroup.LayoutParams.MATCH_PARENT,
+                                   ViewGroup.LayoutParams.WRAP_CONTENT
+                           ));
 
-        unit3Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), LearningMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+                           ImageView imageView = new ImageView(this);
+                           String imageName = dataList.get(i).image_button_name;
 
-        unit4Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), LearningMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+                           int resID = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                           imageView.setImageResource(resID);
+                           int widthInSp = 75;
+                           int heightInSp = 75;
 
-        unit5Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), LearningMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+                           int widthInPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, widthInSp, getResources().getDisplayMetrics());
+                           int heightInPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, heightInSp, getResources().getDisplayMetrics());
 
-        unit6Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), LearningMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+                           LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(widthInPx, heightInPx);
+                           imageView.setLayoutParams(layoutParams);
+                           materialList.addView(imageView);
 
-        unit7Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), LearningMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+                           TextView textView = new TextView(this);
+                           textView.setBackgroundResource(getResources().getIdentifier("background_color", "drawable", getPackageName()));
+                           LinearLayout.LayoutParams layoutTextView = new LinearLayout.LayoutParams(
+                                   ViewGroup.LayoutParams.MATCH_PARENT,
+                                   ViewGroup.LayoutParams.MATCH_PARENT
+                           );
+                           textView.setLayoutParams(layoutTextView);
+                           textView.setTextSize(30);
+                           textView.setPadding((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics()), 0,0,0);
+                           textView.setGravity(Gravity.CENTER_VERTICAL);
+                           textView.setTextColor(Color.BLACK);
+                           textView.setText(dataList.get(i).title);
+                           materialList.addView(textView);
+
+                           String videoUrl = dataList.get(i).videoUrl;
+                           materialList.setOnClickListener(new View.OnClickListener() {
+                               @Override
+                               public void onClick(View view) {
+                                    Intent intent = new Intent(getBaseContext(), LearningMenuActivity.class);
+                                    intent.putExtra("video_url", videoUrl);
+                                    startActivity(intent);
+                               }
+                           });
+
+                           linearLayout.addView(materialList);
+                       }
+                   });
+                });
     }
 }

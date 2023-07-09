@@ -1,6 +1,7 @@
 package com.example.hommieenglish;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.hommieenglish.dao.UserDao;
 import com.example.hommieenglish.db.HommieEnglish;
@@ -29,6 +30,11 @@ public class UserManager {
     }
 
     public User login(String username, String password) {
-        return userDao.getByUsernameAndPassword(username, password);
+        try {
+            return userDao.getByUsernameAndPassword(username, password);
+        } catch (Exception e) {
+            Log.d("ERROR", "Failed login " +e.getMessage());
+            return null;
+        }
     }
 }
