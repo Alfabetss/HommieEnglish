@@ -2,11 +2,14 @@ package com.example.hommieenglish.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(
         tableName = "learning_materials",
-        indices = {}
+        indices = {
+                @Index(value = {"unit"})
+        }
 )
 public class LearningMaterials {
     @PrimaryKey(autoGenerate = true)
@@ -23,6 +26,9 @@ public class LearningMaterials {
 
     @ColumnInfo(name = "button_name")
     public String image_button_name;
+
+    @ColumnInfo(name = "unit")
+    public int unit;
 
     public int getId() {
         return id;
@@ -62,5 +68,13 @@ public class LearningMaterials {
 
     public void setImage_button_name(String image_button_name) {
         this.image_button_name = image_button_name;
+    }
+
+    public int getUnit() {
+        return unit;
+    }
+
+    public void setUnit(int unit) {
+        this.unit = unit;
     }
 }

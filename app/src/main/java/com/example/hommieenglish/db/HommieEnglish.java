@@ -8,28 +8,39 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.hommieenglish.dao.AnswerDao;
 import com.example.hommieenglish.dao.LearningMaterialsDao;
+import com.example.hommieenglish.dao.QuestionsDao;
 import com.example.hommieenglish.dao.UserDao;
+import com.example.hommieenglish.entity.Answer;
 import com.example.hommieenglish.entity.LearningMaterials;
+import com.example.hommieenglish.entity.Questions;
 import com.example.hommieenglish.entity.User;
 
-@Database(entities = {User.class, LearningMaterials.class}, version = 3)
+@Database(entities = {
+        User.class,
+        LearningMaterials.class,
+        Questions.class,
+        Answer.class
+}, version = 7)
 public abstract class HommieEnglish extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract LearningMaterialsDao learningMaterialsDao();
+    public abstract QuestionsDao questionsDao();
+    public abstract AnswerDao answerDao();
     private static volatile HommieEnglish INSTANCE;
     public static HommieEnglish getInstance(Context context) {
-//        if (INSTANCE == null) {
+        if (INSTANCE == null) {
             synchronized (HommieEnglish.class) {
-//                if (INSTANCE == null) {
+                if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     HommieEnglish.class, "hommie_english")
                             .fallbackToDestructiveMigration()
                             .addCallback(new RoomCallback(context))
                             .build();
-//                }
+                }
             }
-//        }
+        }
         return INSTANCE;
     }
 }

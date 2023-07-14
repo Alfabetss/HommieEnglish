@@ -31,7 +31,7 @@
             android:name=".LearningMenuActivity"
             android:exported="false"/>
         <activity
-            android:name=".TaskMultipleChoiceActivity"
+            android:name=".QuestionActivity"
             android:exported="false"/>
         <activity
             android:name=".VideoActivity"

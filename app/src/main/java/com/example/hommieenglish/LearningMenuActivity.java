@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 
@@ -15,7 +14,7 @@ public class LearningMenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning_menu);
 
-        Intent intent = getIntent();
+        Intent incomingIntent = getIntent();
 
         ImageButton learningBtn = (ImageButton) findViewById(R.id.learning_btn);
         ImageButton practiceBtn = (ImageButton) findViewById(R.id.practice_btn);
@@ -24,7 +23,7 @@ public class LearningMenuActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getBaseContext(), VideoActivity.class);
-                i.putExtra("video_url", intent.getStringExtra("video_url"));
+                i.putExtra("video_url", incomingIntent.getStringExtra("video_url"));
                 startActivity(i);
             }
         });
@@ -32,7 +31,9 @@ public class LearningMenuActivity extends Activity {
         practiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), TaskMultipleChoiceActivity.class);
+                Intent intent = new Intent(getBaseContext(), QuestionActivity.class);
+                intent.putExtra("unit_id", incomingIntent.getIntExtra("unit_id", 0));
+                intent.putExtra("user_id", incomingIntent.getIntExtra("user_id", 0));
                 startActivity(intent);
             }
         });

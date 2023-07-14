@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hommieenglish.db.HommieEnglish;
 import com.example.hommieenglish.utils.Helper;
 
 import java.util.concurrent.CompletableFuture;
@@ -19,6 +20,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
+        // Initiate database
+        HommieEnglish.getInstance(getApplicationContext());
         UserManager userManager = new UserManager(getApplicationContext());
         // Fungsi untuk pindah ke halaman register
         TextView linkToRegister = findViewById(R.id.dont_have_account);
