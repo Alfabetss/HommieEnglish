@@ -44,7 +44,7 @@ public class QuestionActivity extends Activity {
             ViewGroup.LayoutParams.WRAP_CONTENT
     );
 
-    private static final String backgroundColor = "#00000000";
+    public static final String backgroundColor = "#00000000";
 
     public static final LinearLayout.LayoutParams matchParentMatchParent = new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -258,6 +258,7 @@ public class QuestionActivity extends Activity {
                                 saveScore(finalResult1);
                                 dialogInterface.dismiss();
                                 Intent intentLearning = new Intent(getBaseContext(), LearningActivity.class);
+                                intentLearning.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 intentLearning.putExtra("user_id", userId);
                                 startActivity(intentLearning);
                             }
@@ -269,7 +270,7 @@ public class QuestionActivity extends Activity {
     }
 
     // Fungsi untuk memainkan audio yang diputar
-    private Boolean playAudio(MediaPlayer mediaPlayer, ImageButton btnPlayPause) {
+    public static Boolean playAudio(MediaPlayer mediaPlayer, ImageButton btnPlayPause) {
         if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
             mediaPlayer.start();
             btnPlayPause.setImageResource(R.drawable.ic_pause);
@@ -278,7 +279,7 @@ public class QuestionActivity extends Activity {
     }
 
     // Fungsi untuk mem-pause audio yang diputar
-    private Boolean pauseAudio(MediaPlayer mediaPlayer, ImageButton btnPlayPause) {
+    public static Boolean pauseAudio(MediaPlayer mediaPlayer, ImageButton btnPlayPause) {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             btnPlayPause.setImageResource(R.drawable.ic_play);
@@ -301,8 +302,10 @@ public class QuestionActivity extends Activity {
                     return null;
                 }
                 // kalau sudah ada, maka update score nya untuk unitId & userId yg sama
-                existingData.setScore(finalScore);
-                achievementDao.update(existingData);
+                if (existingData.getScore() < finalScore) {
+                    existingData.setScore(finalScore);
+                    achievementDao.update(existingData);
+                }
                 return null;
             } catch (Exception e){
                 Log.d("DEBUG", "Failed save score" + e.getStackTrace());

@@ -51,7 +51,9 @@ public class MainMenu extends Activity {
         taskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainMenu.this, "This is Task button !", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getBaseContext(), TaskActivity.class);
+                intent.putExtra("user_id", userId);
+                startActivity(intent);
             }
         });
     }

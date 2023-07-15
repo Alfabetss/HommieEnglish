@@ -44,6 +44,9 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false"/>
+        <activity
+            android:name=".TaskActivity"
+            android:exported="false"/>
 
     </application>
     <!--        Permission lists-->
