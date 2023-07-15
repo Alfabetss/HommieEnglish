@@ -18,8 +18,10 @@
         <ImageButton
             android:id="@+id/learn_layout"
             android:layout_width="170dp"
+            android:scaleType="fitXY"
             android:layout_height="170dp"
             android:layout_gravity="bottom"
+            android:background="@drawable/rounded_background_color"
             android:src="@drawable/learning_btn">
 
         </ImageButton>
@@ -42,12 +44,16 @@
                 android:id="@+id/achievement_layout"
                 android:layout_width="170dp"
                 android:layout_height="170dp"
+                android:scaleType="fitXY"
+                android:background="@drawable/rounded_background_color"
                 android:src="@drawable/achivement_btn" />
 
             <ImageButton
                 android:id="@+id/task_layout"
                 android:layout_width="170dp"
                 android:layout_height="170dp"
+                android:background="@drawable/rounded_background_color"
+                android:scaleType="fitXY"
                 android:src="@drawable/task_btn" />
         </LinearLayout>
     </LinearLayout>
