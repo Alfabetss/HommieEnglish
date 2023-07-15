@@ -3,151 +3,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@drawable/main_background"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:id="@+id/question_layout"
+    android:layout_height="match_parent">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="wrap_content">
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:gravity="center"-->
-<!--            android:paddingBottom="20dp"-->
-<!--            android:padding="30dp"-->
-<!--            android:orientation="vertical">-->
-<!--            <ImageView-->
-<!--                android:src="@drawable/image1_chapter_1"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:scaleType="fitXY"-->
-<!--                android:layout_marginBottom="30dp"-->
-<!--                android:layout_height="300dp">-->
-<!--            </ImageView>-->
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="What is the poster about ?"-->
-<!--                android:textSize="16sp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:background="@color/white"-->
-<!--                android:layout_gravity="bottom"-->
-<!--                android:padding="16dp" />-->
-
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="top"-->
-<!--            android:paddingTop="0dp"-->
-<!--            android:paddingLeft="30dp"-->
-<!--            android:paddingRight="30dp"-->
-<!--            android:orientation="vertical"-->
-<!--            android:layout_weight="1">-->
-
-<!--            <RadioGroup-->
-<!--                android:id="@+id/radioGroup"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@color/white"-->
-<!--                android:orientation="vertical">-->
-<!--                <RadioButton-->
-<!--                    android:id="@+id/radioButton1"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="30dp"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:text="Option 1" />-->
-
-<!--                <RadioButton-->
-<!--                    android:id="@+id/radioButton2"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="30dp"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:text="Option 2" />-->
-
-<!--                <RadioButton-->
-<!--                    android:id="@+id/radioButton3"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="30dp"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:text="Option 3" />-->
-
-<!--                <RadioButton-->
-<!--                    android:id="@+id/radioButton4"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="30dp"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:text="Option 4" />-->
-
-<!--            </RadioGroup>-->
-<!--            &lt;!&ndash;-->
-<!--            <RadioGroup-->
-<!--                android:id="@+id/multipleChoiceRadioGroup"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@color/white"-->
-<!--                android:layout_gravity="top"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <RadioButton-->
-<!--                        android:id="@+id/radioButton1"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Pilihan 1"-->
-<!--                        android:textSize="30dp"-->
-<!--                        android:textColor="@color/black" />-->
-
-<!--                    <RadioButton-->
-<!--                        android:id="@+id/radioButton2"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Pilihan 1"-->
-<!--                        android:textSize="30dp"-->
-<!--                        android:textColor="@color/black" />-->
-
-<!--                </LinearLayout>-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <RadioButton-->
-<!--                        android:id="@+id/radioButton3"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Pilihan 1"-->
-<!--                        android:textSize="30dp"-->
-<!--                        android:textColor="@color/black" />-->
-
-<!--                    <RadioButton-->
-<!--                        android:id="@+id/radioButton4"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Pilihan 1"-->
-<!--                        android:textSize="30dp"-->
-<!--                        android:textColor="@color/black" />-->
-
-<!--                </LinearLayout>-->
-
-<!--            </RadioGroup>-->
-<!--            &ndash;&gt;-->
-<!--        </LinearLayout>-->
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/question_layout"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="50dp"
+            android:layout_height="wrap_content">
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:text="Submit"
+            android:id="@+id/submit_answer"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/background_color"
+            android:layout_height="wrap_content">
+        </Button>
+    </RelativeLayout>
 </ScrollView>

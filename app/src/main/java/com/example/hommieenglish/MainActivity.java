@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
         // Initiate database
         HommieEnglish.getInstance(getApplicationContext());
         UserManager userManager = new UserManager(getApplicationContext());
+
         // Fungsi untuk pindah ke halaman register
         TextView linkToRegister = findViewById(R.id.dont_have_account);
         linkToRegister.setOnClickListener(new View.OnClickListener() {

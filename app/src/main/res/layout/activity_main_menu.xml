@@ -1,30 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
+    android:orientation="vertical"
     tools:context=".MainMenu">
 
-    <RelativeLayout
-        android:id="@+id/cover_layout"
+    <!-- Layout 1 -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/header_image"
+        <ImageButton
+            android:id="@+id/learn_layout"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="bottom"
+            android:src="@drawable/learning_btn">
+
+        </ImageButton>
+
+    </LinearLayout>
+    <!-- Layout 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:src="@drawable/cover"
-            android:scaleType="fitXY" />
-    </RelativeLayout>
+            android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/achievement_layout"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:src="@drawable/achivement_btn" />
 
+            <ImageButton
+                android:id="@+id/task_layout"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:src="@drawable/task_btn" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/cover_layout"
         android:padding="16sp"
         android:orientation="vertical">
 
@@ -104,4 +134,5 @@
             </TextView>
         </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+    -->
+</LinearLayout>

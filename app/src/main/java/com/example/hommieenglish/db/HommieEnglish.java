@@ -8,10 +8,12 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.hommieenglish.dao.AchievementDao;
 import com.example.hommieenglish.dao.AnswerDao;
 import com.example.hommieenglish.dao.LearningMaterialsDao;
 import com.example.hommieenglish.dao.QuestionsDao;
 import com.example.hommieenglish.dao.UserDao;
+import com.example.hommieenglish.entity.Achievement;
 import com.example.hommieenglish.entity.Answer;
 import com.example.hommieenglish.entity.LearningMaterials;
 import com.example.hommieenglish.entity.Questions;
@@ -21,13 +23,15 @@ import com.example.hommieenglish.entity.User;
         User.class,
         LearningMaterials.class,
         Questions.class,
-        Answer.class
-}, version = 7)
+        Answer.class,
+        Achievement.class
+}, version = 8)
 public abstract class HommieEnglish extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract LearningMaterialsDao learningMaterialsDao();
     public abstract QuestionsDao questionsDao();
     public abstract AnswerDao answerDao();
+    public abstract AchievementDao achievementDao();
     private static volatile HommieEnglish INSTANCE;
     public static HommieEnglish getInstance(Context context) {
         if (INSTANCE == null) {

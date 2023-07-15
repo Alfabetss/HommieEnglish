@@ -1,17 +1,20 @@
 package com.example.hommieenglish;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,10 +24,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hommieenglish.dao.AchievementDao;
 import com.example.hommieenglish.dao.AnswerDao;
-import com.example.hommieenglish.dao.LearningMaterialsDao;
 import com.example.hommieenglish.dao.QuestionsDao;
 import com.example.hommieenglish.db.HommieEnglish;
+import com.example.hommieenglish.entity.Achievement;
 import com.example.hommieenglish.entity.Answer;
 import com.example.hommieenglish.entity.QuestionAndAnswers;
 import com.example.hommieenglish.entity.Questions;
@@ -33,11 +37,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
 
 public class QuestionActivity extends Activity {
-    private String checkId;
-
     public static final LinearLayout.LayoutParams matchParentWrapContent = new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
@@ -53,7 +54,11 @@ public class QuestionActivity extends Activity {
     private HommieEnglish db;
     private QuestionsDao questionsDao;
     private AnswerDao answerDao;
+    private AchievementDao achievementDao;
     private int userId;
+
+    private int unitId;
+    private List<Integer> radioGroupIds = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,26 +71,26 @@ public class QuestionActivity extends Activity {
         db = HommieEnglish.getInstance(this);
         questionsDao = db.questionsDao();
         answerDao = db.answerDao();
+        achievementDao = db.achievementDao();
+
         CompletableFuture<List<QuestionAndAnswers>> completableFutureQnA = CompletableFuture.supplyAsync(
-                new Supplier<List<QuestionAndAnswers>>() {
-                    @Override
-                    public List<QuestionAndAnswers> get() {
-                        List<Questions> questions = questionsDao.getByUnit(intent.getIntExtra("unit_id", 0));
-                        List<QuestionAndAnswers> result = new ArrayList<>();
-                        for (Questions q:questions) {
-                            QuestionAndAnswers qna = new QuestionAndAnswers();
-                            qna.setUnitId(q.getUnitId());
-                            qna.setQuestion(q.getQuestion());
-                            qna.setParentQuestion(q.getParentQuestion());
-                            qna.setType(q.getType());
-                            qna.setContent(q.getContent());
-                            qna.setSequence(q.getSequence());
-                            qna.setId(q.getId());
-                            qna.setAnswers(answerDao.getByQuestionId(q.getId()));
-                            result.add(qna);
-                        }
-                        return result;
+                () -> {
+                    List<Questions> questions = questionsDao.getByUnit(intent.getIntExtra("unit_id", 0));
+                    List<QuestionAndAnswers> result = new ArrayList<>();
+                    for (Questions q:questions) {
+                        QuestionAndAnswers qna = new QuestionAndAnswers();
+                        qna.setUnitId(q.getUnitId());
+                        qna.setQuestion(q.getQuestion());
+                        qna.setParentQuestion(q.getParentQuestion());
+                        qna.setType(q.getType());
+                        qna.setContent(q.getContent());
+                        qna.setSequence(q.getSequence());
+                        qna.setId(q.getId());
+                        qna.setAnswers(answerDao.getByQuestionId(q.getId()));
+                        result.add(qna);
+                        unitId = q.getUnitId();
                     }
+                    return result;
                 }
         );
         completableFutureQnA.thenAcceptAsync(dataList -> {
@@ -201,6 +206,7 @@ public class QuestionActivity extends Activity {
                            radioGroup.setLayoutParams(matchParentWrapContent);
                            radioGroup.setBackgroundColor(Color.parseColor(backgroundColor));
                            radioGroup.setOrientation(LinearLayout.VERTICAL);
+                           radioGroup.setId(View.generateViewId());
 
                            for (Answer a : q.getAnswers()) {
                                RadioButton rb1 = new RadioButton(this);
@@ -210,17 +216,59 @@ public class QuestionActivity extends Activity {
                                rb1.setTextSize(16);
                                rb1.setTextColor(Color.WHITE);
                                rb1.setText(a.getAnswerText());
+                               rb1.setId(View.generateViewId());
+                               rb1.setTag(a.getCorrectAnswer());
                                radioGroup.addView(rb1);
                            }
-
+                           radioGroupIds.add(radioGroup.getId());
                            answerLayout.addView(radioGroup);
                            layout.addView(questionLayout);
                            layout.addView(answerLayout);
                        }
                    });
                 });
+
+        Button submitButton = findViewById(R.id.submit_answer);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                double finalResult = 0;
+                for (Integer radioGroupId : radioGroupIds) {
+
+                    RadioGroup radioGroup = findViewById(radioGroupId);
+                    int idRadioButton = radioGroup.getCheckedRadioButtonId();
+                    RadioButton selectedRadioButton = findViewById(idRadioButton);
+                    if (selectedRadioButton == null) {
+                        continue;
+                    }
+                    Boolean isCorrectAnswer = (Boolean) selectedRadioButton.getTag();
+                    if (isCorrectAnswer){
+                        finalResult += 12.5;
+                    }
+                    Log.d("DEBUG", "correct answer " + String.valueOf(isCorrectAnswer));
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(QuestionActivity.this);
+                double finalResult1 = finalResult;
+                builder.setTitle("Result")
+                        .setCancelable(false)
+                        .setMessage("Congratulations, You have completed the questions in Unit " + unitId + " with a score of " + finalResult + "!")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                saveScore(finalResult1);
+                                dialogInterface.dismiss();
+                                Intent intentLearning = new Intent(getBaseContext(), LearningActivity.class);
+                                intentLearning.putExtra("user_id", userId);
+                                startActivity(intentLearning);
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
     }
 
+    // Fungsi untuk memainkan audio yang diputar
     private Boolean playAudio(MediaPlayer mediaPlayer, ImageButton btnPlayPause) {
         if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
             mediaPlayer.start();
@@ -229,11 +277,37 @@ public class QuestionActivity extends Activity {
         return true;
     }
 
+    // Fungsi untuk mem-pause audio yang diputar
     private Boolean pauseAudio(MediaPlayer mediaPlayer, ImageButton btnPlayPause) {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             btnPlayPause.setImageResource(R.drawable.ic_play);
         }
         return false;
+    }
+
+    private void saveScore(double finalScore) {
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                // Ambil  data dari table achievement by userId & unitId
+                Achievement existingData = achievementDao.getByUserIdAndUnitId(userId, unitId);
+                // kalau belum ada di table, maka buat baru
+                if (existingData == null) {
+                    Achievement achievement = new Achievement();
+                    achievement.setScore(finalScore);
+                    achievement.setUnitId(unitId);
+                    achievement.setUserId(userId);
+                    achievementDao.insert(achievement);
+                    return null;
+                }
+                // kalau sudah ada, maka update score nya untuk unitId & userId yg sama
+                existingData.setScore(finalScore);
+                achievementDao.update(existingData);
+                return null;
+            } catch (Exception e){
+                Log.d("DEBUG", "Failed save score" + e.getStackTrace());
+                return null;
+            }
+        });
     }
 }
