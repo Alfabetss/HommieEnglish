@@ -36,10 +36,21 @@ public class AchievementActivity extends Activity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            double score = 0;
+                            String lvl = "beginner";
+                            for (Achievement achievement : listAchievement) {
+                                score += achievement.getScore();
+                                if (achievement.getUnitId() == 3 && achievement.getScore() > 75) {
+                                    lvl = "intermediate";
+                                } else if (achievement.getUnitId() == 7 && achievement.getScore() > 75) {
+                                    lvl = "professional";
+                                }
+                            }
+                            int resID = getResources().getIdentifier(lvl, "raw", getPackageName());
                             imageViewGif = findViewById(R.id.imageViewGif);
                             Glide.with(getApplicationContext())
                                     .asGif()
-                                    .load(R.raw.beginner)
+                                    .load(resID)
                                     .into(new ImageViewTarget<GifDrawable>(imageViewGif) {
                                         @Override
                                         protected void setResource(GifDrawable resource) {
@@ -51,11 +62,6 @@ public class AchievementActivity extends Activity {
                                             resource.start();
                                         }
                                     });
-
-                            double score = 0;
-                            for (Achievement achievement : listAchievement) {
-                                score += achievement.getScore();
-                            }
                             TextView tv = findViewById(R.id.achievementTv);
                             StringBuilder sb = new StringBuilder();
                             sb.append("Congrats \n")
