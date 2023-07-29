@@ -45,6 +45,8 @@ public class TaskActivity extends Activity {
     private AchievementDao achievementDao;
     private QuestionsDao questionsDao;
     private AnswerDao answerDao;
+    private MediaPlayer mediaPlayer;
+
     private List<Integer> radioGroupIds = new ArrayList<>();
 
     @Override
@@ -52,8 +54,9 @@ public class TaskActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
         Intent intent = getIntent();
-        userId = intent.getIntExtra("user_id", 0);
+        startBackgroundMusic();
 
+        userId = intent.getIntExtra("user_id", 0);
         db = HommieEnglish.getInstance(this);
         questionsDao = db.questionsDao();
         answerDao = db.answerDao();
@@ -242,18 +245,62 @@ public class TaskActivity extends Activity {
                     Log.d("DEBUG", "correct answer " + String.valueOf(isCorrectAnswer));
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(TaskActivity.this);
-                builder.setTitle("Result")
-                        .setCancelable(false)
-                        .setMessage("Congratulations, You have completed the questions with a score of " + finalResult + "!")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        });
+                View dialogView = getLayoutInflater().inflate(R.layout.custom_dialog, null);
+                builder.setView(dialogView)
+                        .setCancelable(false);
+
+                TextView messageTextView = dialogView.findViewById(R.id.dialog_message);
+                Button dialogButton = dialogView.findViewById(R.id.dialog_button);
                 AlertDialog dialog = builder.create();
+
+                // Menetapkan pesan dialog
+                messageTextView.setText("Congratulations, You have completed the questions with a score of " + finalResult + "!");
+                // Menetapkan aksi saat tombol di klik
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 dialog.show();
             }
         });
+    }
+
+
+    private void startBackgroundMusic() {
+        // Inisialisasi MediaPlayer dengan file audio di raw folder
+        mediaPlayer = MediaPlayer.create(this, R.raw.backsound);
+
+        // Mengatur agar backsound diulang-ulang (looping)
+        mediaPlayer.setLooping(true);
+
+        // Memulai memutar backsound
+        mediaPlayer.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Jika activity tidak lagi berada di depan (kehilangan fokus),
+        // maka pause backsound agar tidak terus berlanjut di background
+        mediaPlayer.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Ketika activity kembali aktif setelah di pause, lanjutkan pemutaran backsound
+        mediaPlayer.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Bebaskan MediaPlayer saat activity dihancurkan
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }

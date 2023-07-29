@@ -2,9 +2,12 @@ package com.example.hommieenglish;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -14,24 +17,42 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.example.hommieenglish.dao.AchievementDao;
+import com.example.hommieenglish.dao.UserDao;
 import com.example.hommieenglish.db.HommieEnglish;
 import com.example.hommieenglish.entity.Achievement;
+import com.example.hommieenglish.entity.User;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
 public class AchievementActivity extends Activity {
     private ImageView imageViewGif;
     private HommieEnglish db;
     private AchievementDao achievementDao;
+    private UserDao userDao;
+    private User userData;
+    private MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievement);
 
+        startBackgroundMusic();
+        LinearLayout l = findViewById(R.id.achievement_text);
+        l.getBackground().setAlpha(128);
         Intent intent = getIntent();
         db = HommieEnglish.getInstance(this);
         achievementDao = db.achievementDao();
-        CompletableFuture.supplyAsync(() -> achievementDao.getByUserId(intent.getIntExtra("user_id", 0)))
+        userDao = db.userDao();
+        CompletableFuture.supplyAsync(new Supplier<List<Achievement>>() {
+                    @Override
+                    public List<Achievement> get() {
+                        userData = userDao.getById(intent.getIntExtra("user_id", 0));
+                        return achievementDao.getByUserId(intent.getIntExtra("user_id", 0));
+                    }
+                })
                 .thenAcceptAsync(listAchievement -> {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -62,9 +83,10 @@ public class AchievementActivity extends Activity {
                                             resource.start();
                                         }
                                     });
+
                             TextView tv = findViewById(R.id.achievementTv);
                             StringBuilder sb = new StringBuilder();
-                            sb.append("Congrats \n")
+                            sb.append("Congrats ").append(userData.getName()).append("\n")
                                     .append(listAchievement.size())
                                     .append("/7 ")
                                     .append("Tasks Completed \n With a score of ")
@@ -73,5 +95,42 @@ public class AchievementActivity extends Activity {
                         }
                 });
         });
+    }
+
+
+    private void startBackgroundMusic() {
+        // Inisialisasi MediaPlayer dengan file audio di raw folder
+        mediaPlayer = MediaPlayer.create(this, R.raw.backsound);
+
+        // Mengatur agar backsound diulang-ulang (looping)
+        mediaPlayer.setLooping(true);
+
+        // Memulai memutar backsound
+        mediaPlayer.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Jika activity tidak lagi berada di depan (kehilangan fokus),
+        // maka pause backsound agar tidak terus berlanjut di background
+        mediaPlayer.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Ketika activity kembali aktif setelah di pause, lanjutkan pemutaran backsound
+        mediaPlayer.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Bebaskan MediaPlayer saat activity dihancurkan
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }

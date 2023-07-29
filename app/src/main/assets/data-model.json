@@ -8,7 +8,7 @@
   "learningMaterials": [
     {
       "id": 1,
-      "videoUrl": "https://www.youtube.com/embed/e_04ZrNroTo",
+      "videoUrl": "https://www.youtube.com/embed/82TbAG0xRFU",
       "title": "Let's Protect Our Environment",
       "description": "",
       "image_button_name": "unit_1",
@@ -16,7 +16,7 @@
     },
     {
       "id": 2,
-      "videoUrl": "https://www.youtube.com/embed/e_04ZrNroTo",
+      "videoUrl": "https://www.youtube.com/embed/BbPGXll7Uko",
       "title": "You Look Prettier In Kebaya Clothes",
       "description": "",
       "image_button_name": "unit_2",
@@ -24,7 +24,7 @@
     },
     {
       "id": 3,
-      "videoUrl": "https://www.youtube.com/embed/e_04ZrNroTo",
+      "videoUrl": "https://www.youtube.com/embed/UJnPNvZNikw",
       "title": "Internet Is The Best Invention",
       "description": "",
       "image_button_name": "unit_3",
@@ -32,7 +32,7 @@
     },
     {
       "id": 4,
-      "videoUrl": "https://www.youtube.com/embed/e_04ZrNroTo",
+      "videoUrl": "https://www.youtube.com/embed/UxfY2ZJXslE",
       "title": "How Much Does It Cost",
       "description": "",
       "image_button_name": "unit_4",
@@ -40,7 +40,7 @@
     },
     {
       "id": 5,
-      "videoUrl": "https://www.youtube.com/embed/e_04ZrNroTo",
+      "videoUrl": "https://www.youtube.com/embed/GJl7SaTSSzc",
       "title": "How Are You Feeling?",
       "description": "",
       "image_button_name": "unit_5",
@@ -48,7 +48,7 @@
     },
     {
       "id": 6,
-      "videoUrl": "https://www.youtube.com/embed/e_04ZrNroTo",
+      "videoUrl": "https://www.youtube.com/embed/3Dib93MS2cc",
       "title": "The Heroes Are Very Brave",
       "description": "",
       "image_button_name": "unit_6",
@@ -56,7 +56,7 @@
     },
     {
       "id": 7,
-      "videoUrl": "https://www.youtube.com/embed/e_04ZrNroTo",
+      "videoUrl": "https://www.youtube.com/embed/P8W1Q5sYz-k",
       "title": "Antarctica Is The Coldest Place On Earth",
       "description": "",
       "image_button_name": "unit_7",
@@ -1505,12 +1505,12 @@
         },
         {
           "id": 179,
-          "answerText": "Uranus",
+          "answerText": "8",
           "isCorrectAnswer": false
         },
         {
           "id": 180,
-          "answerText": "Jupiter",
+          "answerText": "7",
           "isCorrectAnswer": true
         }
       ]
@@ -1616,16 +1616,16 @@
       "question": "Mom : Don’t Forget To wear thick Clothes, It’s …….. and ….. Outside \nSon : Okay Mom ",
       "content": "unit7_image2",
       "sequence": "7",
-      "isParentQuestion": false,
+      "isParentQuestion": true,
       "answers": [
         {
           "id": 191,
-          "answerText": "true",
-          "isCorrectAnswer": true
+          "answerText": "hot and warm",
+          "isCorrectAnswer":false
         },
         {
           "id": 192,
-          "answerText": "false",
+          "answerText": "autumn and sunny",
           "isCorrectAnswer": false
         },
         {

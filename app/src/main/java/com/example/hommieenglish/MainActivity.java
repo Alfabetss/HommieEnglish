@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.hommieenglish.db.HommieEnglish;
 import com.example.hommieenglish.utils.Helper;
+import com.facebook.stetho.Stetho;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -19,7 +20,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-
         // Initiate database
         HommieEnglish.getInstance(getApplicationContext());
         UserManager userManager = new UserManager(getApplicationContext());

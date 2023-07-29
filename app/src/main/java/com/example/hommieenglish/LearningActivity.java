@@ -3,6 +3,7 @@ package com.example.hommieenglish;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
@@ -75,10 +76,7 @@ public class LearningActivity extends Activity {
                     m.setEnable(true);
                 } else {
                     Achievement achievement = achievementDao.getByUserIdAndUnitId(userId, l.getUnit() -1);
-                    Log.d("DEBUG", "INI user id " + userId + " unit" + l.getUnit());
-                    Log.d("DEBUG", "INI achievement " + achievement + " unit" + l.getUnit());
                     if (achievement != null && achievement.getScore() > 75) {
-                        Log.d("DEBUG", "INI ACHIEVEMENT " + achievement.getUnitId()+ " score" + achievement.getScore() );
                         m.setEnable(true);
                     }
                 }
@@ -95,7 +93,7 @@ public class LearningActivity extends Activity {
                        LinearLayout materialList = new LinearLayout(this);
                        materialList.setOrientation(LinearLayout.HORIZONTAL);
                        materialList.setClickable(true);
-                       materialList.setPadding(0,0,0,24);
+                       materialList.setPadding(0,24,0,24);
                        materialList.setLayoutParams(QuestionActivity.matchParentWrapContent);
 
                        ImageView imageView = new ImageView(this);
@@ -115,15 +113,17 @@ public class LearningActivity extends Activity {
 
                        TextView textView = new TextView(this);
                        if (dataList.get(i).getEnable()) {
+                           textView.setTextColor(Color.BLACK);
                            textView.setBackgroundResource(getResources().getIdentifier("background_color", "drawable", getPackageName()));
                        } else {
+                           textView.setTextColor(Color.parseColor("#80000000"));
                            textView.setBackgroundResource(getResources().getIdentifier("background_color_disabled", "drawable", getPackageName()));
+                           textView.getBackground().setAlpha(128);
                        }
                        textView.setLayoutParams(QuestionActivity.matchParentMatchParent);
                        textView.setTextSize(30);
                        textView.setPadding((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, getResources().getDisplayMetrics()), 0,0,0);
                        textView.setGravity(Gravity.CENTER_VERTICAL);
-                       textView.setTextColor(Color.BLACK);
                        textView.setText(dataList.get(i).title);
                        materialList.addView(textView);
 

@@ -249,21 +249,28 @@ public class QuestionActivity extends Activity {
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(QuestionActivity.this);
                 double finalResult1 = finalResult;
-                builder.setTitle("Result")
-                        .setCancelable(false)
-                        .setMessage("Congratulations, You have completed the questions in Unit " + unitId + " with a score of " + finalResult + "!")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                saveScore(finalResult1);
-                                dialogInterface.dismiss();
-                                Intent intentLearning = new Intent(getBaseContext(), LearningActivity.class);
-                                intentLearning.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                intentLearning.putExtra("user_id", userId);
-                                startActivity(intentLearning);
-                            }
-                        });
+                View dialogView = getLayoutInflater().inflate(R.layout.custom_dialog, null);
+                builder.setView(dialogView)
+                        .setCancelable(false);
+
+                TextView messageTextView = dialogView.findViewById(R.id.dialog_message);
+                Button dialogButton = dialogView.findViewById(R.id.dialog_button);
                 AlertDialog dialog = builder.create();
+
+                // Menetapkan pesan dialog
+                messageTextView.setText("Congratulations, You have completed the questions in Unit " + unitId + " with a score of " + finalResult + "!");
+                // Menetapkan aksi saat tombol di klik
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        saveScore(finalResult1);
+                        Intent intentLearning = new Intent(getBaseContext(), LearningActivity.class);
+                        intentLearning.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intentLearning.putExtra("user_id", userId);
+                        startActivity(intentLearning);
+                        dialog.dismiss();
+                    }
+                });
                 dialog.show();
             }
         });

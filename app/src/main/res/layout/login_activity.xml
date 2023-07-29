@@ -33,7 +33,7 @@
             android:fontFamily="@font/archivo_black_regular"
             android:text="@string/login"
             android:textAlignment="center"
-            android:textSize="50sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tv_subtitle_continue"

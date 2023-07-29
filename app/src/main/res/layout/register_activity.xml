@@ -18,7 +18,6 @@
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:layout_above="@id/tv_subtitle"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/archivo_black_regular"
@@ -32,11 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/et_register_name"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/black"
             android:fontFamily="@font/archivo_black_regular"
             android:text="@string/register"
             android:textAlignment="center"
-            android:textSize="50sp" />
+            android:textSize="30sp" />
 
     </LinearLayout>
 
