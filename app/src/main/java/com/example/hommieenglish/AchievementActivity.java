@@ -33,16 +33,18 @@ public class AchievementActivity extends Activity {
     private UserDao userDao;
     private User userData;
     private MediaPlayer mediaPlayer;
+    private Boolean playMusicBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievement);
 
+        Intent intent = getIntent();
+        playMusicBackground = intent.getBooleanExtra("play_back_sound", false);
         startBackgroundMusic();
         LinearLayout l = findViewById(R.id.achievement_text);
         l.getBackground().setAlpha(128);
-        Intent intent = getIntent();
         db = HommieEnglish.getInstance(this);
         achievementDao = db.achievementDao();
         userDao = db.userDao();
@@ -99,6 +101,9 @@ public class AchievementActivity extends Activity {
 
 
     private void startBackgroundMusic() {
+        if (!playMusicBackground) {
+            return;
+        }
         // Inisialisasi MediaPlayer dengan file audio di raw folder
         mediaPlayer = MediaPlayer.create(this, R.raw.backsound);
 
@@ -112,6 +117,9 @@ public class AchievementActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        if (mediaPlayer == null) {
+            return;
+        }
         // Jika activity tidak lagi berada di depan (kehilangan fokus),
         // maka pause backsound agar tidak terus berlanjut di background
         mediaPlayer.pause();
@@ -120,6 +128,9 @@ public class AchievementActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (mediaPlayer == null) {
+            return;
+        }
         // Ketika activity kembali aktif setelah di pause, lanjutkan pemutaran backsound
         mediaPlayer.start();
     }

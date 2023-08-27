@@ -48,12 +48,14 @@ public class TaskActivity extends Activity {
     private MediaPlayer mediaPlayer;
 
     private List<Integer> radioGroupIds = new ArrayList<>();
+    private Boolean playMusicBackground;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
         Intent intent = getIntent();
+        playMusicBackground = intent.getBooleanExtra("play_back_sound", false);
         startBackgroundMusic();
 
         userId = intent.getIntExtra("user_id", 0);
@@ -269,6 +271,9 @@ public class TaskActivity extends Activity {
 
 
     private void startBackgroundMusic() {
+        if (!playMusicBackground) {
+            return;
+        }
         // Inisialisasi MediaPlayer dengan file audio di raw folder
         mediaPlayer = MediaPlayer.create(this, R.raw.backsound);
 
@@ -282,6 +287,9 @@ public class TaskActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        if (mediaPlayer == null) {
+            return;
+        }
         // Jika activity tidak lagi berada di depan (kehilangan fokus),
         // maka pause backsound agar tidak terus berlanjut di background
         mediaPlayer.pause();
@@ -290,6 +298,9 @@ public class TaskActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (mediaPlayer == null) {
+            return;
+        }
         // Ketika activity kembali aktif setelah di pause, lanjutkan pemutaran backsound
         mediaPlayer.start();
     }

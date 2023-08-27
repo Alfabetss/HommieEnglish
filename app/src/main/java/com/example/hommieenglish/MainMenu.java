@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,20 +24,31 @@ public class MainMenu extends Activity {
     private Integer userId;
     private MediaPlayer mediaPlayer;
     private MediaPlayer buttonSound;
+    private Boolean playBacksoundMusic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        startBackgroundMusic();
         Intent i = getIntent();
         userId = i.getIntExtra("user_id", 0);
         ImageButton learnBtn = findViewById(R.id.learn_layout);
         ImageButton achievementBtn = findViewById(R.id.achievement_layout);
         ImageButton taskBtn = findViewById(R.id.task_layout);
 
-        // Inisialisasi MediaPlayer dengan file audio di raw folder
-        buttonSound = MediaPlayer.create(this, R.raw.button_sound);
+        ImageButton audioBtn = findViewById(R.id.icon_sound_on_off);
+        startBackgroundMusic();
+
+        audioBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (playBacksoundMusic) {
+                    playBacksoundMusic = stopBacksound(mediaPlayer, audioBtn);
+                } else {
+                    playBacksoundMusic = startBacksound(mediaPlayer, audioBtn);
+                }
+            }
+        });
 
         learnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +56,7 @@ public class MainMenu extends Activity {
                 playButtonSound();
                 Intent intent = new Intent(getBaseContext(), LearningActivity.class);
                 intent.putExtra("user_id", userId);
+                intent.putExtra("play_back_sound", playBacksoundMusic);
                 startActivity(intent);
             }
         });
@@ -53,6 +67,7 @@ public class MainMenu extends Activity {
                 playButtonSound();
                 Intent intent = new Intent(getBaseContext(), AchievementActivity.class);
                 intent.putExtra("user_id", userId);
+                intent.putExtra("play_back_sound", playBacksoundMusic);
                 startActivity(intent);
             }
         });
@@ -63,6 +78,7 @@ public class MainMenu extends Activity {
                 playButtonSound();
                 Intent intent = new Intent(getBaseContext(), TaskActivity.class);
                 intent.putExtra("user_id", userId);
+                intent.putExtra("play_back_sound", playBacksoundMusic);
                 startActivity(intent);
             }
         });
@@ -77,16 +93,26 @@ public class MainMenu extends Activity {
 
         // Memulai memutar backsound
         mediaPlayer.start();
+        playBacksoundMusic = true;
     }
 
     private void playButtonSound() {
         // Memulai memutar backsound tombol
+        if (!playBacksoundMusic) {
+            Log.d("DEBUG", "play button sound off" );
+            return;
+        }
+        // Inisialisasi MediaPlayer dengan file audio di raw folder
+        buttonSound = MediaPlayer.create(this, R.raw.button_sound);
         buttonSound.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        if (!playBacksoundMusic) {
+            return;
+        }
         // Jika activity tidak lagi berada di depan (kehilangan fokus),
         // maka pause backsound agar tidak terus berlanjut di background
         mediaPlayer.pause();
@@ -95,6 +121,9 @@ public class MainMenu extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (!playBacksoundMusic) {
+            return;
+        }
         // Ketika activity kembali aktif setelah di pause, lanjutkan pemutaran backsound
         mediaPlayer.start();
     }
@@ -113,4 +142,21 @@ public class MainMenu extends Activity {
         }
     }
 
+    // Fungsi untuk memainkan audio yang diputar
+    public static Boolean startBacksound(MediaPlayer mediaPlayer, ImageButton btnPlayPause) {
+        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
+            mediaPlayer.start();
+            btnPlayPause.setImageResource(R.drawable.audio);
+        }
+        return true;
+    }
+
+    // Fungsi untuk mem-pause audio yang diputar
+    public static Boolean stopBacksound(MediaPlayer mediaPlayer, ImageButton btnPlayPause) {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+            btnPlayPause.setImageResource(R.drawable.audio_off);
+        }
+        return false;
+    }
 }

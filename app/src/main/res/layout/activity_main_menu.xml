@@ -7,6 +7,16 @@
     android:orientation="vertical"
     tools:context=".MainMenu">
 
+    <ImageButton
+        android:id="@+id/icon_sound_on_off"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:src="@drawable/audio"
+        android:layout_gravity="top|end"
+        android:scaleType="fitXY"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="16dp"/>
+
     <!-- Layout 1 -->
     <LinearLayout
         android:layout_width="match_parent"

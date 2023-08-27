@@ -54,3 +54,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.8'
     implementation 'com.facebook.stetho:stetho:1.5.1'
 }
+
+configurations.all {
+    resolutionStrategy {
+        force 'org.xerial:sqlite-jdbc:3.34.0'
+    }
+}
