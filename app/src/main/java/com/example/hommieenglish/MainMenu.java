@@ -99,7 +99,6 @@ public class MainMenu extends Activity {
     private void playButtonSound() {
         // Memulai memutar backsound tombol
         if (!playBacksoundMusic) {
-            Log.d("DEBUG", "play button sound off" );
             return;
         }
         // Inisialisasi MediaPlayer dengan file audio di raw folder
