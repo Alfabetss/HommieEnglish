@@ -47,6 +47,15 @@
         <activity
             android:name=".TaskActivity"
             android:exported="false"/>
+        <activity
+            android:name=".QuestionBankMenu"
+            android:exported="false"/>
+        <activity
+            android:name=".BankQuestions"
+            android:exported="false"/>
+        <activity
+            android:name=".BankQuestionsExplanation"
+            android:exported="false"/>
 
     </application>
     <!--        Permission lists-->

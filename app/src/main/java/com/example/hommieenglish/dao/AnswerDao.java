@@ -27,4 +27,7 @@ public interface AnswerDao {
 
     @Query("SELECT * FROM answer WHERE question_id = :questionId")
     List<Answer> getByQuestionId(int questionId);
+
+    @Query("SELECT * FROM answer WHERE question_id = :unitId and is_correct_answer = :isCorrectAnswer")
+    Answer getCorrectAnswer(Integer unitId, Boolean isCorrectAnswer);
 }

@@ -25,7 +25,7 @@ import com.example.hommieenglish.entity.User;
         Questions.class,
         Answer.class,
         Achievement.class
-}, version = 8)
+}, version = 9)
 public abstract class HommieEnglish extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract LearningMaterialsDao learningMaterialsDao();

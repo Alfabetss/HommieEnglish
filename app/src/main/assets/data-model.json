@@ -72,11 +72,14 @@
       "content": "unit1_image1",
       "sequence": "1",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "easy",
       "answers": [
         {
           "id": 1,
           "answerText": "Protected Animal",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "di Indonesia kita mempunyai banyak satwa yang dilindungi, salah satu dari ketiga satwa tersebut. jadi kita tidak boleh memburu mereka karena keberadaannya terancam punah, jadi jawaban yang paling tepat adalah “Protected Animal\""
         },
         {
           "id": 2,
@@ -135,11 +138,14 @@
       "content": "Read Aloud Following The Text\nDo you know Sumatran Tiger? Sumatran tiger is a species of tiger that can be found in Indonesia, especially in Sumatra Island. Sumatran tiger is the smallest tiger of the nine subspecies of tiger. The male Sumatran tiger can grow about 100 kg to 140 kg. Like all tigers, Sumatran tiger also has a thick dark orange coat with thick black stripes. Do you know that no two tigers have the same black stripes? Sadly, Sumatran tigers are now very difficult to find living in the wild. It is said that only around 600 Sumatran tigers live in the wild. Now, the Sumatran tiger is listed as one of the critically endangered animals in the world and may become extinct because their population is decreasing. The population of Sumatran tigers keeps decreasing because of illegal logging and illegal hunting. People cut down the trees in the forests to make oil palm plantatíon. They also burn the forest to clear the land. People also hunt the tigers to get the skin and the fangs and sell it.\n",
       "sequence": "3",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "easy",
       "answers": [
         {
           "id": 9,
           "answerText": "true",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "Based on this question, you have to pay close attention that Sumatran tigers only exist in Indonesia. so the answer is TRUE"
         },
         {
           "id": 10,
@@ -198,6 +204,8 @@
       "content": "",
       "sequence": "6",
       "isParentQuestion": false,
+      "isBankQuestion": true,
+      "level": "easy",
       "answers": [
         {
           "id": 15,
@@ -207,7 +215,8 @@
         {
           "id": 16,
           "answerText": "false",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "based on the explanation of the story that the Sumatran tiger experienced population extinction and therefore their breeding stopped. so the most correct answer is FALSE"
         }
       ]
     },
@@ -343,6 +352,8 @@
       "content": "Read About The Following Text\nTraditíonal Dances We should be proud of being Indonesia. It is a big country. There are more than 17,000 islands in Indonesia. So, it has many different cultures and languages. Do you know that there are more than 700 languages in our country? How cool it is! Our country has many different cultures, so there are also many tradítíonal dances. Each region in Indonesia has their own tradítíonal dances. Sorme of the dances are very famous among tourísts such as Kecak dance and Legong dance from Balí. They are famous because Bali ís number 1 touríst destination ín Indonesía. In Ponorogo, East Java, Reog is very popular. The dancers wear very big mask called Singa Barong. The mask is about 30-40 kg in weight. In Jogja, there ís a sacred dance called Bedhaya. Thís dance is so sacred that it must be performed by níne women who has to fast before performing the dance. From Aceh, North Sumatra, Saman ís probably the most famous dance. Saman ís also called the dance of a thousand hands. It is done by agroup of people without music instruments. Saman begins slowly ina rhythmic manner but gradually becomes faster as the dance progresses. To control the movement, a sínger usually recites traditional poems. There are many more traditional dances from lndonesia such as Jaipong dance from East Java, Yapong dance from Jakarta, Piring dance frorm Minangkabau, and Tor-Tor dance from North Sumatra.",
       "sequence": "3",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "easy",
       "answers": [
         {
           "id": 33,
@@ -352,7 +363,8 @@
         {
           "id": 34,
           "answerText": "More Than 1700",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "Based on the narration of the question above, it is explained that Indonesia has more than 1700 islands spread throughout Indonesia"
         },
         {
           "id": 35,
@@ -374,6 +386,8 @@
       "content": "",
       "sequence": "4",
       "isParentQuestion": false,
+      "isBankQuestion": true,
+      "level": "easy",
       "answers": [
         {
           "id": 37,
@@ -393,7 +407,8 @@
         {
           "id": 40,
           "answerText": "Kecak Dances And Legong Dances",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "Based on the narration of the question above, it is explained that Bali has dances called Kecak dances and Legong dances"
         }
       ]
     },
@@ -467,6 +482,8 @@
       "content": "unit2_audio1",
       "sequence": "7",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "hard",
       "answers": [
         {
           "id": 49,
@@ -481,7 +498,8 @@
         {
           "id": 51,
           "answerText": "Sumatera",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "expectation": "seseorang memakai kebaya yang cantik lalu temannya berkata berasal darimana kebaya tersebut lalu ia menjawab Sumatera"
         },
         {
           "id": 52,
@@ -498,6 +516,8 @@
       "content": "unit2_audio2",
       "sequence": "8",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "hard",
       "answers": [
         {
           "id": 53,
@@ -512,7 +532,8 @@
         {
           "id": 55,
           "answerText": "Saman Dances",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "expectation": "seseorang teman bertanya kita ingin menampilkan apa pada saat ulang tahun sekolah lalu ia menjawab saman dances yang berarti tarian saman"
         },
         {
           "id": 56,
@@ -656,7 +677,7 @@
       "answers": [
         {
           "id": 73,
-          "answerText": ". I Will Be A Singer Because I Have Microphone",
+          "answerText": "I Will Be A Singer Because I Have Microphone",
           "isCorrectAnswer": false
         },
         {
@@ -687,7 +708,7 @@
       "answers": [
         {
           "id": 77,
-          "answerText": ". I will be a chef because I love animal",
+          "answerText": "I will be a chef because I love animal",
           "isCorrectAnswer": false
         },
         {
@@ -697,7 +718,7 @@
         },
         {
           "id": 79,
-          "answerText": ". I will be a chef so I can clean the kitchen",
+          "answerText": "I will be a chef so I can clean the kitchen",
           "isCorrectAnswer": false
         },
         {
@@ -870,11 +891,14 @@
       "content": "True OR False Session\n Go to A Traditional Market l love going to the traditional market near my house with my mom. It's only 5-minute walk from my house. My mom goes to that market almost every day. She leaves around 4.30 a.m. and comes back half an hour later. On the weekends, I usually go with her. This traditional market is not a big market, but we can find lots of things, such as fruits, vegetables, fish, meats, kitchen utensils and other groceries there. The vegetables, fish, chicken, and meat sold there are always fresh. Some people also sell fruits and vegetables that they grow in their own farm. The market opens early in the morning. The sellers usually arrive around 4 in the morning and prepare their goods. What 1 love from traditíonal market ís because most things in here are not expensive. You can even bargain for the price if you buy in large quantity. When I go to the tradítionál market, we often meet with our neighbors or even my classmates or schoolmates. They are also with their mom shopping for something in the market.",
       "sequence": "4",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "easy",
       "answers": [
         {
           "id": 101,
           "answerText": "true",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "You have to pay close attention to the sentence in the text that it is true that the author's house is close to the market"
         },
         {
           "id": 102,
@@ -891,6 +915,8 @@
       "content": "",
       "sequence": "5",
       "isParentQuestion": false,
+      "isBankQuestion": true,
+      "level": "easy",
       "answers": [
         {
           "id": 103,
@@ -900,7 +926,8 @@
         {
           "id": 104,
           "answerText": "false",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "as already explained that the market does not close at 5am. You have to pay attention to the questions properly and well in order to answer this question"
         }
       ]
     },
@@ -933,11 +960,14 @@
       "content": "unit4_audio1",
       "sequence": "7",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "medium",
       "answers": [
         {
           "id": 107,
           "answerText": "Twenty-Five Thousand Rupiahs",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "twenty five is dua puluh lima, twenty two is dua puluh dua, twenty three is dua puluh tiga, twenty four is dua puluh empat. So in this question u must listen carefully. The Answers is Twenty-Five"
         },
         {
           "id": 108,
@@ -964,6 +994,8 @@
       "content": "",
       "sequence": "8",
       "isParentQuestion": false,
+      "isBankQuestion": true,
+      "level": "medium",
       "answers": [
         {
           "id": 111,
@@ -973,7 +1005,8 @@
         {
           "id": 112,
           "answerText": "2 Kilos",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "dengarkan baik baik perkacakapan tersebut bahwa pembeli menginginkan two kilos artinya 2 kilogram wortel."
         },
         {
           "id": 113,
@@ -1057,6 +1090,8 @@
       "content": "Read Aloud Following The Text\nVino is absent today. He has got a toothache since yesterday evening. It is really painful. This afternoon, he will go to the dentist with his monm. Do you know why he has toothache? Vino loves eating sweets, especially chocolate and candies. He eats them every day, but he rarely brushes his teeth. That ís why he has got toothache. It is important for us to keep our body healthy. To keep healthy, we can do several healthy habits below. 1. Eat healthy food. We should eat vegetables and fruits. Vegetables and fruits contain beneficial ingredients that can make our body healthy. We can eat our favorite food, such as pízza, fríed chícken, or burger, but we must not eat them too much. 2. Be cean. We should never forget to wash our hands before we eat and brush our teeth after we eat and before we go to sleep. We should also take a bath ín the morning and in the evening. 3. Do some exercises. Watching TV or playing games may SOunds very exciting, but those activities make you not moving your body. Exercise is good for our body. It can also increase our enerqy and can reduce the risk of us getting sick. We must do exercise regularly. We can go jogging, cycling with friends, or swimming. A. Sleep well. Our boody needs to rest to grow well. We need mnínímumn eíght hours of sleep every day. So, We should go to bed early and wake up early in the morníng so you feel fresh.",
       "sequence": "3",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "medium",
       "answers": [
         {
           "id": 123,
@@ -1071,7 +1106,8 @@
         {
           "id": 125,
           "answerText": "Tootache",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "dikatakan bahwa vino sedang sakit gigi, yang berarti sakit gigi adalah \"Tootache\""
         },
         {
           "id": 126,
@@ -1088,6 +1124,8 @@
       "content": "",
       "sequence": "4",
       "isParentQuestion": false,
+      "isBankQuestion": true,
+      "level": "medium",
       "answers": [
         {
           "id": 127,
@@ -1102,7 +1140,8 @@
         {
           "id": 129,
           "answerText": "chocolate And candies",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "tidak heran vino mengalami sakit gigi karena dia menyukai makanan makanan yang tidak sehat untuk giginya. Vino suka memakan chocolate dan Candies (Permen)"
         },
         {
           "id": 130,
@@ -1150,6 +1189,8 @@
       "content": "Y A E H T H L",
       "sequence": "6",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "hard",
       "answers": [
         {
           "id": 135,
@@ -1164,7 +1205,8 @@
         {
           "id": 137,
           "answerText": "H E A L T H Y",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "menyusun kalimat dengan benar HEALTHY yang berarti sehat"
         },
         {
           "id": 138,
@@ -1181,11 +1223,14 @@
       "content": "L U F I N N E Z A",
       "sequence": "7",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "hard",
       "answers": [
         {
           "id": 139,
           "answerText": "I N F L U E N Z A",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "kondisi ini adalah kondisi ketika hidung tersumbat yang disebut juga sebagai INFLUENZA atau flu"
         },
         {
           "id": 140,
@@ -1212,6 +1257,8 @@
       "content": "A M S A T H",
       "sequence": "8",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "hard",
       "answers": [
         {
           "id": 143,
@@ -1226,7 +1273,8 @@
         {
           "id": 145,
           "answerText": "A S T H M A",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "keadaan dimana seseorang sulit bernafas penyakit ini bernama asma atau ASTHMA"
         },
         {
           "id": 146,
@@ -1398,11 +1446,14 @@
       "content": "General Soedirman \n was born in Rembana, Central Java. He was the military commander of Indonesian forces during the fight for independence from the Dutch. During the Japanese occupation, he joined PETA, a national army promoted by the Japanese, and got his first military educatíon. After Indonesia gained their independence, he was succeeded to disarmed the rest of Japanese soldiers in Banyumas. In December 1945, he got the honor to be the General. The most important is, he didn't gain his General position through milítary academy, but because of his loyalty. The next five years, Soedirman was sick with tuberculosis. While still in a bad health, Soedirman still led several guerilla wars against the Dutch. Mr. Soekarno, Indonesia's first president, didn't allow him to led the guerillas, but Soedirman dídn't do what Soekarno said because of his responsibil ity as the leader. With all the power he still had, Soedirman led his soldiers moved from one place to another. Soedirman always tried to keep up the spirit of his soldiers and instructed them like there's nothing wrong with hb health until one day he had to leave the war because his body could no longer handle the burden. General Soedirman died in January 1950 a was buried in Heroes' Cemetery in Semaki, Yogyakarta. For his brave and sacrifice, Indonesian government gave him the title of Nationol Hero of Indonesia as an Independence Defender Hero",
       "sequence": "6",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "hard",
       "answers": [
         {
           "id": 167,
           "answerText": "true",
-          "isCorrectAnswer": false
+          "isCorrectAnswer": false,
+          "expectation": "cerita tentang seorang jendral Soedirman dikatakan bahwa jenderal Soedirman tidak lahir di west java melainkan central java yang berarti jawa tengah"
         },
         {
           "id": 168,
@@ -1440,6 +1491,8 @@
       "content": "",
       "sequence": "8",
       "isParentQuestion": false,
+      "isBankQuestion": true,
+      "level": "hard",
       "answers": [
         {
           "id": 171,
@@ -1449,7 +1502,8 @@
         {
           "id": 172,
           "answerText": "false",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "expectation": "lima tahun kemudian jendral Soedirman meninggal dunia karena penyakit tulang adalah tidak benar FALSE"
         }
       ]
     },
@@ -1461,6 +1515,8 @@
       "content": "unit7_image1",
       "sequence": "1",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "medium",
       "answers": [
         {
           "id": 173,
@@ -1480,7 +1536,8 @@
         {
           "id": 176,
           "answerText": "Jupiter",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "planet terbesar diantariksa kita adalah jupiter, kenapa bukan matahari ? karena matahari tidak bisa disebut sebagai planet"
         }
       ]
     },
@@ -1492,6 +1549,8 @@
       "content": "",
       "sequence": "2",
       "isParentQuestion": false,
+      "isBankQuestion": true,
+      "level": "medium",
       "answers": [
         {
           "id": 177,
@@ -1506,12 +1565,13 @@
         {
           "id": 179,
           "answerText": "8",
-          "isCorrectAnswer": false
+          "isCorrectAnswer": true,
+          "explanation": "antariksa galaxy kita memiliki 8 planet"
         },
         {
           "id": 180,
           "answerText": "7",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": false
         }
       ]
     },
@@ -1523,6 +1583,8 @@
       "content": "",
       "sequence": "3",
       "isParentQuestion": false,
+      "isBankQuestion": true,
+      "level": "medium",
       "answers": [
         {
           "id": 181,
@@ -1537,7 +1599,8 @@
         {
           "id": 183,
           "answerText": "Merkurius",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "ada banyak planet yang ada di galaxy kita. namun ada planet yang terkecil juga terbesar lalu planet apa yang terkecil tersebut? Merkurius"
         },
         {
           "id": 184,
@@ -1617,6 +1680,8 @@
       "content": "unit7_image2",
       "sequence": "7",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "medium",
       "answers": [
         {
           "id": 191,
@@ -1631,7 +1696,8 @@
         {
           "id": 193,
           "answerText": "Snowy And Rainy",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "explanation": "ibu berkata jangan lupa memakai pakaian yang hangat lalu sang anak menjawab baik bu. percakapan ini menandakan cuaca dingin yang berarti cuaca sedang mengalami hujan dan bersalju"
         },
         {
           "id": 194,
@@ -1648,6 +1714,8 @@
       "content": "unit7_image3",
       "sequence": "8",
       "isParentQuestion": true,
+      "isBankQuestion": true,
+      "level": "hard",
       "answers": [
         {
           "id": 195,
@@ -1667,7 +1735,8 @@
         {
           "id": 198,
           "answerText": "rainy",
-          "isCorrectAnswer": true
+          "isCorrectAnswer": true,
+          "expectation": "ibu berkata jangan lupa membawa payung mu lalu anaknya menjawab baiklah ibu. dengan percakapan ini kita dapat menyimpulkan bahwa cuaca sedang rainy yang berarti hujan"
         }
       ]
     }

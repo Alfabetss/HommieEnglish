@@ -43,41 +43,9 @@ class RoomCallback extends RoomDatabase.Callback {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
-//                insertLearningMaterialsData(context);
                 importData(context);
             }
         });
-    }
-
-    private void insertLearningMaterialsData(Context context) {
-        Log.d("DEBUG", "insertLearningMaterialsData invoked");
-        HommieEnglish hommieEnglish = HommieEnglish.getInstance(context);
-        LearningMaterialsDao learningMaterialsDao = hommieEnglish.learningMaterialsDao();
-
-        List<LearningMaterials> learningMaterials = learningMaterialsDao.getAllMaterials();
-        if (learningMaterials.size() > 0) {
-            Log.d("DEBUG", "Learning materials already inserted");
-            return;
-        }
-
-        List<String[]> data = new ArrayList<>();
-        data.add(new String[]{"https://www.youtube.com/embed/e_04ZrNroTo", "Let's Protect Our Environment", "description", "unit_1", "1"});
-        data.add(new String[]{"https://www.youtube.com/embed/e_04ZrNroTo", "You Look Prettier In Kebaya Clothes", "description", "unit_2", "2"});
-        data.add(new String[]{"https://www.youtube.com/embed/e_04ZrNroTo", "Internet Is The Best Invention", "description", "unit_3", "3"});
-        data.add(new String[]{"https://www.youtube.com/embed/e_04ZrNroTo", "How Much Does It Cost", "description", "unit_4", "4"});
-        data.add(new String[]{"https://www.youtube.com/embed/e_04ZrNroTo", "How Are You Feeling?", "description", "unit_5", "5"});
-        data.add(new String[]{"https://www.youtube.com/embed/e_04ZrNroTo", "The Heroes Are Very Brave", "description", "unit_6", "6"});
-        data.add(new String[]{"https://www.youtube.com/embed/e_04ZrNroTo", "Antarctica Is The Coldest Place On Earth", "description", "unit_7", "7"});
-
-        for (int i=0; i < data.size(); i++) {
-            LearningMaterials materials = new LearningMaterials();
-            materials.setVideoUrl(data.get(i)[0]);
-            materials.setDescription(data.get(i)[2]);
-            materials.setTitle(data.get(i)[1]);
-            materials.setImage_button_name(data.get(i)[3]);
-            materials.setUnit(Integer.valueOf(data.get(i)[4]));
-            learningMaterialsDao.insertMaterials(materials);
-        }
     }
 
     public static void importData(Context context) {
@@ -114,6 +82,8 @@ class RoomCallback extends RoomDatabase.Callback {
                 q.setContent(qna.getContent());
                 q.setSequence(qna.getSequence());
                 q.setParentQuestion(qna.getParentQuestion());
+                q.setBankQuestion(qna.getBankQuestion());
+                q.setLevel(qna.getLevel());
                 questionsDao.insert(q);
 
                 for (Answer a : qna.getAnswers()) {

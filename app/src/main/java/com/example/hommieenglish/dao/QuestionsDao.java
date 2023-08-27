@@ -26,4 +26,7 @@ public interface QuestionsDao {
 
     @Query("SELECT * FROM questions WHERE unit = :unit")
     List<Questions> getByUnit(int unit);
+
+    @Query("SELECT * FROM questions WHERE is_bank_question = :isBankQuestions AND level = :level")
+    List<Questions> getBankQuestions(Boolean isBankQuestions, String level);
 }

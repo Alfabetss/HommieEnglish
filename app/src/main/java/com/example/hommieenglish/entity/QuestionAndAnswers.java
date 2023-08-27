@@ -13,7 +13,25 @@ public class QuestionAndAnswers {
     private String content;
     private String sequence;
     private Boolean isParentQuestion;
+    private Boolean isBankQuestion;
+    private String level;
     private List<Answer> answers;
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public Boolean getBankQuestion() {
+        return isBankQuestion;
+    }
+
+    public void setBankQuestion(Boolean bankQuestion) {
+        isBankQuestion = bankQuestion;
+    }
 
     public int getId() {
         return id;

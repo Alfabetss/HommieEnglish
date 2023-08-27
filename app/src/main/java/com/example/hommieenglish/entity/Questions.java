@@ -27,6 +27,26 @@ public class Questions {
     private String sequence;
     @ColumnInfo(name = "is_parent_question")
     private Boolean isParentQuestion;
+    @ColumnInfo(name = "is_bank_question")
+    private Boolean isBankQuestion;
+    @ColumnInfo(name = "level")
+    private String level;
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public Boolean getBankQuestion() {
+        return isBankQuestion;
+    }
+
+    public void setBankQuestion(Boolean bankQuestion) {
+        isBankQuestion = bankQuestion;
+    }
 
     public int getUnitId() {
         return unitId;

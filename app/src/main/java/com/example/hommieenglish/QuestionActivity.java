@@ -227,7 +227,6 @@ public class QuestionActivity extends Activity {
                        }
                    });
                 });
-
         Button submitButton = findViewById(R.id.submit_answer);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override

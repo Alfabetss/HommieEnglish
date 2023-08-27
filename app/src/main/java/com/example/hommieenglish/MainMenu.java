@@ -76,7 +76,7 @@ public class MainMenu extends Activity {
             @Override
             public void onClick(View view) {
                 playButtonSound();
-                Intent intent = new Intent(getBaseContext(), TaskActivity.class);
+                Intent intent = new Intent(getBaseContext(), QuestionBankMenu.class);
                 intent.putExtra("user_id", userId);
                 intent.putExtra("play_back_sound", playBacksoundMusic);
                 startActivity(intent);

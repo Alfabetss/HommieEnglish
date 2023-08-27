@@ -21,6 +21,16 @@ public class Answer {
     private String answerText;
     @ColumnInfo(name = "is_correct_answer")
     private Boolean isCorrectAnswer;
+    @ColumnInfo(name = "explanation")
+    private String explanation;
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
 
     public int getId() {
         return id;
